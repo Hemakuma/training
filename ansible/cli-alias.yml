@@ -1,0 +1,17 @@
+---
+- name: snmp access-list
+  hosts: n9k-1
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: obtain login credentials
+      include_vars: credentials.yml
+
+    - nxos_config:
+        lines:
+          - cli alias name wri copy run start
+          - cli alias name q exit
+          - cli alias name swt switchto vdc
+          - cli alias name wr copy run start
+        # save: yes
+        provider: "{{ creds }}"

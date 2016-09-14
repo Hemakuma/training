@@ -1,0 +1,14 @@
+[all:vars]
+ansible_connection = local
+
+[n9k-1]
+172.16.123.134
+
+[n9k-2]
+10.114.217.158
+
+[DC-1:children]
+n9k-1
+
+[DC-2:children]
+n9k-2

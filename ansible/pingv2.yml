@@ -1,0 +1,23 @@
+---
+- name: ping testing
+  hosts: n9k-1
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: obtain login credentials
+      include_vars: credentials.yml
+    - name: define provider
+      set_fact:
+        provider:
+          host: "{{ inventory_hostname }}"
+          username: "{{creds['username']}}"
+          password: "{{creds['password']}}"
+    # test reachability to 8.8.8.8 using mgmt vrf
+    - name: Run 'show version'
+      nxos_command:
+        provider: "{{provider}}"
+        commands:
+          - show version | json
+      register: version
+    - name: print version
+      debug: var=version.stdout_lines
