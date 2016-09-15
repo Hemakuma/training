@@ -1,0 +1,9 @@
+---
+- name: Configuring the Vlan
+  hosts: leafs
+  connection: local
+  gather_facts: no
+  tasks:
+
+    - name: Dump all vars
+      action: template src=templates/dumpall.j2 dest=/nxos-ansible/myscripts/ansible_vars.all

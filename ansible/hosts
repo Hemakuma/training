@@ -1,14 +1,12 @@
 [all:vars]
 ansible_connection = local
 
-[n9k-1]
-172.16.123.134
+[leafs]
+leaf1
 
-[n9k-2]
-10.114.217.158
+[spines]
+spine1 
 
-[DC-1:children]
-n9k-1
-
-[DC-2:children]
-n9k-2
+[dc-1:children]
+leafs
+spines

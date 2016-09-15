@@ -1,0 +1,17 @@
+---
+# tasks file for hostports
+- name: Configuring Server Ports
+  nxos_config:
+    provider: "{{ creds }}"
+    lines:
+      # remember to have spaces between item
+      - description {{ item.des }}
+      - switchport mode access
+      - switchport mode trunk
+  #    - spanning-tree port type edge trunk
+    parents: ['interface {{ item.int }}']
+    match: line
+    replace: line
+  with_items: "{{ hostports }}"
+  notify:
+    - Save Config

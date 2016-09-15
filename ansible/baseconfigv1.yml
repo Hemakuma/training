@@ -1,0 +1,49 @@
+---
+- name: ping testing
+  hosts: n9k-1
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: obtain login credentials
+      include_vars: credentials.yml
+    #contents all the base configuration data
+    - name: getting the data file
+      include_vars: base-vars.yml
+
+    - name: configure ntp servers
+      nxos_config:
+        provider: "{{ creds }}"
+        lines: ['ntp server {{ item }} use-vrf management']
+      with_items: "{{ ntp_servers }}"
+
+    - name: configure ntp source interface
+      nxos_config:
+        provider: "{{ creds }}"
+        lines: ['ntp source-interface  mgmt0']
+    - name: configure access-list
+      nxos_template:
+        provider: "{{ creds }}"
+        src: snmp_acl.j2
+    - name: Configuring alias
+      nxos_config:
+        provider: "{{ creds }}"
+        lines: ['cli alias name {{ item }}']
+      with_items: "{{ alias }}"
+
+    - name: Configuring Radius Servers
+      nxos_config:
+        provider: "{{ creds }}"
+        lines: ['radius-server host {{ item.server }} key 7 {{ item.key }}  accounting']
+        match: exact
+      with_items: "{{ radius_servers }}"
+
+    - name: configure vty
+      nxos_config:
+        provider: "{{ creds }}"
+        lines:
+            - session-limit 15
+            - exec-timeout 300
+        parents: ['line vty']
+        replace: block
+
+# alias are defined in the variables file (within this playbook, that variables file is include..see first task)

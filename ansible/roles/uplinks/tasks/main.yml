@@ -1,0 +1,45 @@
+---
+# tasks file for uplinks
+- name: configure uplinks template
+  nxos_template:
+    provider: "{{ creds }}"
+    src: interface.j2
+    backup: true
+  notify:
+    - Save Config
+
+#
+# - name: Configuring Loopback full configuration
+#   nxos_config:
+#     provider: "{{ creds }}"
+#     lines:
+#       - 'description {{ item.des }}'
+#       - 'ip address {{ item.ip }}'
+#       # - 'ip router ospf 50 area 0.0.0.0'
+#       # - 'ip ospf network point-to-point'
+#     parents: ['interface {{ item.lo }}']
+#     match: line
+#     replace: line
+#   with_items: "{{loopback}}"
+#   notify: Save Config
+#
+#
+#
+# - name: Configuring Downlink to leafs
+#   nxos_config:
+#     provider: "{{ creds }}"
+#     lines:
+#       - 'interface {{ item.int }}'
+#       - 'no switchport'
+#     #  - 'description {{ item.}}'
+#       - 'no shutdown'
+#       - 'ip address {{ item.ip }}'
+#     #   - 'ip router ospf 50 area 0.0.0.0'
+#     #   - 'ip ospf network point-to-point'
+#     #   - 'ip pim sparse-mode'
+#       - 'mtu 9216'
+#     parents: ['interface {{ item.int }}']
+#     match: line
+#     replace: line
+#   with_items: "{{uplink_interface}}"
+#   notify: Save Config

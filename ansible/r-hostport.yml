@@ -1,0 +1,9 @@
+---
+
+- hosts: [leafs]
+  connection: local
+  strategy: free
+  roles:
+    - role: login
+    - role: hostports
+    - role: uplinks

@@ -1,0 +1,15 @@
+---
+#u need to copy this file to /etc/ansibles/hosts_vars folder
+uplink_interface:
+  - {int: "ethernet1/1", ip: 192.168.1.2/30, neighbor: 192.168.1.100}
+
+loopback:
+  - {lo: "loopback0", ip: 192.168.1.101/32, des: "router id"}
+
+
+iplo: 192.168.1.101
+#masklo: 32
+
+hostports:
+   - {int: "ethernet1/5", des: ESXI-1}
+   - {int: "ethernet1/6", des: ESXI-2}

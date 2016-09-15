@@ -1,0 +1,9 @@
+---
+# tasks file for baseconfig
+#renders the jinja2 template
+- name: configure base template
+  nxos_template:
+    provider: "{{ creds }}"
+    src: basetemplate.j2
+  notify:
+    - Save Config

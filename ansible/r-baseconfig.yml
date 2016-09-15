@@ -1,0 +1,10 @@
+---
+
+- hosts: leafs
+  connection: local
+  strategy: free
+  roles:
+    - role: login
+    - role: baseconfig
+    - role: vlans
+    - role: hostports

@@ -1,0 +1,7 @@
+---
+vlans:
+    - { vlan_id: 10, name: web, state: present }
+    - { vlan_id: 20, name: app, state: present }
+    - { vlan_id: 30, name: db, state: present }
+    - { vlan_id: 40, name: misc, state: present }
+    - { vlan_id: 99, name: native_vlan, state: present }

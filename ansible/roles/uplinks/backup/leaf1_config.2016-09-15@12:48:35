@@ -1,0 +1,111 @@
+
+!Command: show running-config
+!Time: Tue Sep 13 12:32:32 2016
+
+version 7.0(3)I4(3)
+hostname N9K-1
+vdc N9K-1 id 1
+  limit-resource vlan minimum 16 maximum 4094
+  limit-resource vrf minimum 2 maximum 4096
+  limit-resource port-channel minimum 0 maximum 511
+  limit-resource u4route-mem minimum 248 maximum 248
+  limit-resource u6route-mem minimum 96 maximum 96
+  limit-resource m4route-mem minimum 58 maximum 58
+  limit-resource m6route-mem minimum 8 maximum 8
+
+feature nxapi
+
+no password strength-check
+username admin password 5 $5$msdroYJM$5rjD1wtYggVTMV5YRIA.hfwXa2heNh0Gi0ih/oi5w88  role network-admin
+ip domain-lookup
+ip name-server 172.16.123.2 use-vrf management
+radius-server host 10.230.86.165 key 7  radiuskey  accounting 
+radius-server host 152.69.76.91 key 7  radiuskey  accounting 
+aaa group server radius pdit_radius 
+    server 10.230.86.165 
+    server 152.69.76.91 
+    use-vrf management
+    source-interface mgmt0
+ip access-list 50-SNMP-Access
+  10 permit ip 10.241.16.91/32 any 
+  20 permit ip 10.132.243.9/32 any 
+  30 permit ip 152.69.77.32/28 any 
+  40 deny ip any any 
+snmp-server user admin network-admin auth md5 0x684e91b03699bec05adbc0acac9a65a1 priv 0x684e91b03699bec05adbc0acac9a65a1 localizedkey
+rmon event 1 log trap public description FATAL(1) owner PMON@FATAL
+rmon event 2 log trap public description CRITICAL(2) owner PMON@CRITICAL
+rmon event 3 log trap public description ERROR(3) owner PMON@ERROR
+rmon event 4 log trap public description WARNING(4) owner PMON@WARNING
+rmon event 5 log trap public description INFORMATION(5) owner PMON@INFO
+ntp server 10.68.0.41 use-vrf management
+ntp server 10.68.0.42 use-vrf management
+ntp server 10.246.0.1 use-vrf management
+ntp server 10.246.0.2 use-vrf management
+ntp source-interface  mgmt0
+
+vlan 1,10,20,30,99
+vlan 10
+  name web
+vlan 20
+  name app
+vlan 30
+  name db
+vlan 99
+  name native_vlan
+
+vrf context management
+  ip route 0.0.0.0/0 172.16.123.1
+  ip route 0.0.0.0/0 172.16.123.2
+
+interface Ethernet1/1
+  no switchport
+  mtu 9216
+  ip address 192.168.1.2/30
+  no shutdown
+
+interface Ethernet1/2
+
+interface Ethernet1/3
+
+interface Ethernet1/4
+
+interface Ethernet1/5
+  description ESXI-1
+  switchport mode trunk
+
+interface Ethernet1/6
+  description ESXI-2
+  switchport mode trunk
+
+interface Ethernet1/7
+
+interface Ethernet1/8
+
+interface Ethernet1/9
+
+interface mgmt0
+  ip address dhcp
+  vrf member management
+
+interface loopback0
+  description router id
+  ip address 192.168.1.101/32
+cli alias name wr copy run start
+cli alias name q exit
+cli alias name rb rollback running-config file bootflash:startconfig
+line console
+line vty
+  session-limit 15
+  exec-timeout 10
+boot nxos bootflash:/nxos.7.0.3.I4.3.bin 
+ip radius source-interface mgmt0
+logging server 144.20.94.2 5 use-vrf management
+logging server 10.222.24.82 5 use-vrf management
+logging server 10.236.130.4 5 use-vrf management
+logging timestamp microseconds
+logging monitor 7
+logging level syslog 5
+logging level local7 6
+no logging console
+
+

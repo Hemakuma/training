@@ -1,0 +1,106 @@
+
+{
+    "ansible_check_mode": false, 
+    "ansible_connection": "local", 
+    "ansible_version": {
+        "full": "2.1.1.0", 
+        "major": 2, 
+        "minor": 1, 
+        "revision": 1, 
+        "string": "2.1.1.0"
+    }, 
+    "group_names": [
+        "dc-1", 
+        "leafs"
+    ], 
+    "groups": {
+        "all": [
+            "leaf1", 
+            "spine1"
+        ], 
+        "dc-1": [
+            "leaf1", 
+            "spine1"
+        ], 
+        "leafs": [
+            "leaf1"
+        ], 
+        "spines": [
+            "spine1"
+        ], 
+        "ungrouped": [
+            "localhost"
+        ]
+    }, 
+    "hostports": [
+        {
+            "des": "ESXI-1", 
+            "int": "ethernet1/5"
+        }, 
+        {
+            "des": "ESXI-2", 
+            "int": "ethernet1/6"
+        }
+    ], 
+    "inventory_dir": "/nxos-ansible/myscripts", 
+    "inventory_file": "hosts", 
+    "inventory_hostname": "leaf1", 
+    "inventory_hostname_short": "leaf1", 
+    "iplo": "192.168.1.101", 
+    "loopback": [
+        {
+            "des": "router id", 
+            "ip": "192.168.1.101/32", 
+            "lo": "loopback0"
+        }
+    ], 
+    "omit": "__omit_place_holder__2deeb905bb6c9c0976943d40b3f6e3c121fa1118", 
+    "playbook_dir": "/nxos-ansible/myscripts", 
+    "uplink_interface": [
+        {
+            "int": "ethernet2/1", 
+            "ip": "192.168.1.2/30", 
+            "neighbor": "192.168.1.100"
+        }
+    ]
+}
+{
+    "ansible_check_mode": false, 
+    "ansible_connection": "local", 
+    "ansible_version": {
+        "full": "2.1.1.0", 
+        "major": 2, 
+        "minor": 1, 
+        "revision": 1, 
+        "string": "2.1.1.0"
+    }, 
+    "group_names": [
+        "dc-1", 
+        "spines"
+    ], 
+    "groups": {
+        "all": [
+            "leaf1", 
+            "spine1"
+        ], 
+        "dc-1": [
+            "leaf1", 
+            "spine1"
+        ], 
+        "leafs": [
+            "leaf1"
+        ], 
+        "spines": [
+            "spine1"
+        ], 
+        "ungrouped": [
+            "localhost"
+        ]
+    }, 
+    "inventory_dir": "/nxos-ansible/myscripts", 
+    "inventory_file": "hosts", 
+    "inventory_hostname": "spine1", 
+    "inventory_hostname_short": "spine1", 
+    "omit": "__omit_place_holder__2deeb905bb6c9c0976943d40b3f6e3c121fa1118", 
+    "playbook_dir": "/nxos-ansible/myscripts"
+}

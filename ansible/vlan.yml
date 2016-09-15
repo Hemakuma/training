@@ -1,0 +1,15 @@
+---
+- name: Configuring the Vlan
+  hosts: n9k-1
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: obtain login credentials
+      include_vars: credentials.yml
+    #contains all the base configuration data
+    - name: getting the data file
+      include_vars: vlan-data.yml
+
+    - name: configuring the vlans
+      nxos_vlan: vlan_id={{ item.vlan_id }}  name={{ item.name }} state={{ item.state }}  provider="{{ creds }}"
+      with_items: "{{vlans}}"
