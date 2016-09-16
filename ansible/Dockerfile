@@ -7,4 +7,5 @@ RUN pip install --upgrade pip
 RUN pip install ansible==2.1
 RUN pip install markupsafe
 RUN pip install cryptography
+##if this fails, use pip install cryptography --upgrade
 WORKDIR myscript

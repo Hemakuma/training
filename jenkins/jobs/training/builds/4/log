@@ -1,0 +1,22 @@
+Started by user [8mha:AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /var/jenkins_home/workspace/ansible-test
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Hemakuma/training.git # timeout=10
+Fetching upstream changes from https://github.com/Hemakuma/training.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/Hemakuma/training.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 3744ecc6047d4171fb27514c686b2e70f165037f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3744ecc6047d4171fb27514c686b2e70f165037f
+ > git rev-list 3744ecc6047d4171fb27514c686b2e70f165037f # timeout=10
+[ansible-test] $ /bin/bash /tmp/hudson33153291412262474.sh
+Running Ansible against: 
+/tmp/hudson33153291412262474.sh: line 8: pushd: /var/jenkins_home/jobs/training/: No such file or directory
+ERROR! the playbook: r-baseconfig.yml could not be found
+/tmp/hudson33153291412262474.sh: line 10: popd: directory stack empty
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

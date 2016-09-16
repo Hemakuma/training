@@ -1,6 +1,6 @@
 ---
 
-- hosts: dc-1
+- hosts: leaf1
   connection: local
   strategy: free
   roles:

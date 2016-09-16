@@ -2,6 +2,7 @@
 ansible_connection = local
 
 [leafs]
+leaf1
 leaf101
 leaf102
 

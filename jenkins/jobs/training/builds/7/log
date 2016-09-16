@@ -1,0 +1,47 @@
+Started by user [8mha:AAAAlx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzWEgZu/dLi1CL9xJTczDwAj6GcLcAAAAA=[0madmin
+Building in workspace /var/jenkins_home/workspace/training
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/Hemakuma/training.git # timeout=10
+Fetching upstream changes from https://github.com/Hemakuma/training.git
+ > git --version # timeout=10
+using GIT_ASKPASS to set credentials 
+ > git fetch --tags --progress https://github.com/Hemakuma/training.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 3744ecc6047d4171fb27514c686b2e70f165037f (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 3744ecc6047d4171fb27514c686b2e70f165037f
+ > git rev-list 3744ecc6047d4171fb27514c686b2e70f165037f # timeout=10
+[training] $ /bin/bash /tmp/hudson2171641600806334678.sh
+Running Ansible against: 
+~/workspace/training/ansible ~/workspace/training
+
+PLAY [dc-1] ********************************************************************
+
+TASK [setup] *******************************************************************
+
+TASK [setup] *******************************************************************
+
+TASK [setup] *******************************************************************
+ok: [leaf101]
+
+TASK [baseconfig : configure base template] ************************************
+ok: [leaf102]
+
+TASK [baseconfig : configure base template] ************************************
+ok: [spine801]
+
+TASK [baseconfig : configure base template] ************************************
+fatal: [leaf102]: FAILED! => {"changed": false, "failed": true, "msg": "Request failed: <urlopen error [Errno -2] Name or service not known>", "status": -1, "url": "http://leaf102:80/ins"}
+fatal: [leaf101]: FAILED! => {"changed": false, "failed": true, "msg": "Request failed: <urlopen error [Errno -2] Name or service not known>", "status": -1, "url": "http://leaf101:80/ins"}
+fatal: [spine801]: FAILED! => {"changed": false, "failed": true, "msg": "Request failed: <urlopen error [Errno -2] Name or service not known>", "status": -1, "url": "http://spine801:80/ins"}
+	to retry, use: --limit @r-baseconfig.retry
+
+PLAY RECAP *********************************************************************
+leaf101                    : ok=1    changed=0    unreachable=0    failed=1   
+leaf102                    : ok=1    changed=0    unreachable=0    failed=1   
+spine801                   : ok=1    changed=0    unreachable=0    failed=1   
+
+~/workspace/training
+Finished: SUCCESS
