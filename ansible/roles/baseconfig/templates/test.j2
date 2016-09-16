@@ -1,0 +1,40 @@
+
+#snmp acl configuration
+#no ip access-list 50-SNMP-Access
+ip access-list 50-SNMP-Access
+   {% for sourceip in snmp_acl %}
+   permit ip {{ sourceip }} any
+   {% endfor %}
+   deny ip any any
+ip access-list 50-SNMP-Access
+
+
+#ntp server configuration
+{% for ntpserver in ntp_servers %}
+ntp server {{ ntpserver }} use-vrf management
+{% endfor %}
+ntp source-interface  mgmt0
+
+#radius configuration
+{% for radius in radius_servers %}
+radius-server host {{ radius.server }} key 7 {{ radius.key }} accounting
+{% endfor %}
+ip radius source-interface mgmt0
+
+#uplink configuration; vars come from host_vars
+#if the host belongs to leafs group then do this
+{% if 'leafs' in group_names %}
+    {% for uplink in uplink_interface %}
+    interface {{ uplink.int }}
+      no switchport
+      mtu 9216
+      ip address {{ uplink.ip}}
+      no shutdown
+    {% endfor %}
+{% endif %}
+
+
+#vty line configuration
+line vty
+  session-limit 15
+  exec-timeout 10

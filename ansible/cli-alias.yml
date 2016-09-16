@@ -1,6 +1,6 @@
 ---
 - name: snmp access-list
-  hosts: n9k-1
+  hosts: leafs
   connection: local
   gather_facts: no
   tasks:

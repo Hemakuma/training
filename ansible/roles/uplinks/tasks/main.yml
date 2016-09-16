@@ -4,7 +4,7 @@
   nxos_template:
     provider: "{{ creds }}"
     src: interface.j2
-    backup: true
+    backup: yes
   notify:
     - Save Config
 

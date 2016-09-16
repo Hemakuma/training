@@ -1,0 +1,14 @@
+
+{% for uplink in uplink_interface %}
+interface {{ uplink.int }}
+  no switchport
+  mtu 9216
+  ip address {{ uplink.ip}}
+  no shutdown
+{% endfor %}
+
+{% for int in loopback %}
+  interface {{ int.lo }}
+    description router id
+    ip address {{ int.ip }}
+{% endfor %}

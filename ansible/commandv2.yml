@@ -1,6 +1,6 @@
 ---
 - name: ping testing
-  hosts: n9k-1
+  hosts: leafs
   connection: local
   gather_facts: no
   vars:
@@ -17,4 +17,3 @@
         provider: "{{ cli }}"
       register: version
     - debug: var=version.stdout_lines
-    

@@ -2,10 +2,12 @@
 ansible_connection = local
 
 [leafs]
-leaf1
+leaf101
+leaf102
+
 
 [spines]
-spine1 
+spine801
 
 [dc-1:children]
 leafs

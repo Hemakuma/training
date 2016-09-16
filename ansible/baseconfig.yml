@@ -1,6 +1,6 @@
 ---
 - name: template testing
-  hosts: n9k-1
+  hosts: leafs
   connection: local
   gather_facts: no
   tasks:
@@ -15,3 +15,9 @@
       nxos_template:
         provider: "{{ creds }}"
         src: basetemplate.j2
+        backup: true
+      register: result
+    - debug: var=result
+
+    - name: Display all variables/facts known for a host
+      debug: var=hostvars[inventory_hostname]
