@@ -1,10 +1,10 @@
 
 !Command: show running-config
-!Time: Wed Sep 14 13:42:03 2016
+!Time: Wed Sep 14 14:04:52 2016
 
 version 7.0(3)I4(3)
-hostname N9K-1
-vdc N9K-1 id 1
+hostname leaf1
+vdc leaf1 id 1
   limit-resource vlan minimum 16 maximum 4094
   limit-resource vrf minimum 2 maximum 4096
   limit-resource port-channel minimum 0 maximum 511
@@ -16,8 +16,8 @@ vdc N9K-1 id 1
 feature nxapi
 
 no password strength-check
-username admin password 5 $5$Pfsx1ozu$LvIk.ZWjGWDQ7ltWJAOuhZxPPNbuSeEWaGluX47X1T7  role network-admin
-username service password 5 $5$80brM6uR$J80wayj0ErP59YdfHt0zolqpxMadbxa8SH/7kTGs5j9  role priv-15
+username admin password 5 $5$wkoFZZAp$RRX8iRHNNFrvGz4tPXFhJ6HvPerHu2XerXfJFRIhbO/  role network-admin
+username service password 5 $5$xyhlGnrs$1AzXztspJWOecelijrzUjE6TZUDM.qx5Q75ZgxiZXx3  role priv-15
 ip domain-lookup
 ip name-server 172.16.123.2 use-vrf management
 radius-server host 10.230.86.165 key 7  radiuskey  accounting 
