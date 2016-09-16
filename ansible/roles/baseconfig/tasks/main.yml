@@ -18,13 +18,13 @@
     - Save Config
 
 
-- name: configure uplinks template
-  nxos_template:
-    provider: "{{ creds }}"
-    src: uplink.j2
-    backup: yes
-  notify:
-    - Save Config
+# - name: configure uplinks template
+#   nxos_template:
+#     provider: "{{ creds }}"
+#     src: uplink.j2
+#     backup: yes
+#   notify:
+#     - Save Config
 
 # - name: configure base template
 #   nxos_template:
