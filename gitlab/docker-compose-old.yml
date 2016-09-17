@@ -1,0 +1,35 @@
+gitlabv2:
+ container_name: gitlabv2
+ image: gitlab/gitlab-ce:8.11.6-ce.0
+ restart: always
+ hostname: gitlab
+ environment:
+   GITLAB_OMNIBUS_CONFIG: |
+     external_url 'http://127.0.0.1'
+     gitlab_rails['gitlab_shell_ssh_port'] = 222
+ ports:
+  - "80:80"
+  - "443:443"
+  - "222:22"
+ volumes:
+  - '/Users/hemakuma/training/gitlab/config:/etc/gitlab'
+  - '/Users/hemakuma/training/gitlab/logs:/var/log/gitlab'
+  - '/Users/hemakuma/training/gitlab/data:/var/opt/gitlab'
+ privileged: true
+
+#image: gitlab/gitlab-ce:8.5.3-ce.0
+# web:
+#   image: 'gitlab/gitlab-ce:latest'
+#   restart: always
+#   hostname: 'gitlabv2.cisco.com'
+#   environment:
+#     GITLAB_OMNIBUS_CONFIG: |
+#       external_url 'https://gitlabv2.cisco.com'
+#   ports:
+#     - '80:80'
+#     - '443:443'
+#     - '2222:22'
+#   volumes:
+#     - '/Users/hemakuma/training/gitlab/config:/etc/gitlab'
+#     - '/Users/hemakuma/training/gitlab/logs:/var/log/gitlab'
+#     - '/Users/hemakuma/training/gitlab/data:/var/opt/gitlab'
